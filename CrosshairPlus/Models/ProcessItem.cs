@@ -32,7 +32,7 @@ namespace CrosshairPlus.Models
                 {
                     if (e is System.ComponentModel.Win32Exception)
                     {
-
+                        Console.WriteLine(nameof(System.ComponentModel.Win32Exception) + " - " +  e.Message);
                     }
                     else
                     {
