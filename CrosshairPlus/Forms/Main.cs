@@ -38,10 +38,10 @@ namespace CrosshairPlus.Forms
 
         public void ShowHelp()
         {
-            var msg =
+            var messageText =
                 "If the crosshair does not initially appear in-game, try running your game in Borderless or Fullscreen Windowed mode.";
 
-            MessageBox.Show(msg, Application.ProductName, MessageBoxButtons.OK);
+            MessageBox.Show(messageText, Application.ProductName, MessageBoxButtons.OK);
         }
 
         private void OnHookKeyDown(object sender, HookEventArgs e)
@@ -50,10 +50,10 @@ namespace CrosshairPlus.Forms
 
             var keysConverter = new KeysConverter();
             var invariantString = keysConverter.ConvertFromInvariantString(P_CrosshairOptions.CB_Hotkey.Text);
-            
+
             if (invariantString != null)
             {
-                var key = (Keys)invariantString;
+                var key = (Keys) invariantString;
 
                 // Makes sure a key is set
                 if (key != Keys.None)
@@ -83,10 +83,6 @@ namespace CrosshairPlus.Forms
         private void Main_Load(object sender, EventArgs e)
         {
             RefreshProcesses();
-
-            // FIX: Overlay window toggle from being pressed twice at start.
-            _overlayWindow.Show();
-            _overlayWindow.Hide();
         }
 
 
@@ -109,6 +105,10 @@ namespace CrosshairPlus.Forms
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void B_HookToggle_Click(object sender, EventArgs e)
         {
+            // FIX: Overlay window toggle from being pressed twice at start.
+            _overlayWindow.Show();
+            _overlayWindow.Hide();
+
             switch (B_HookToggle.Text)
             {
                 case @"Hook":
