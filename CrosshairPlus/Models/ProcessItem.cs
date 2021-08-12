@@ -26,11 +26,23 @@ namespace CrosshairPlus.Models
 
                 try
                 {
-                    Location = Process.MainModule?.FileName;
+                    Location = Process.MainModule?.FileName;                
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    if (e is System.ComponentModel.Win32Exception)
+                    {
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(e);
+                    }                                       
+                }
+
+                if (string.IsNullOrEmpty(Location))
+                {
+                    Location = Process.StartInfo.FileName;
                 }
             }
         }
